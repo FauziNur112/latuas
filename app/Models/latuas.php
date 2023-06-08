@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class latuas extends Model
 {
     use HasFactory;
-
+    protected $table = "latuas";
     protected $fillable = [
         'nama',
         'uang',
-        'tanggal'
+        'tanggal',
+        'jabatanid'
     ];
+
+    public function jabatan(){
+        return $this->belongsTo(jabatan::class);
+    }
 }

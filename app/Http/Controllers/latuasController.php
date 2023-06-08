@@ -12,7 +12,7 @@ class latuasController extends Controller
      */
     public function show()
     {
-        $datalatuas = latuas::all();
+        $datalatuas = latuas::with('jabatan')->paginate(2);
         return view('latih', compact('datalatuas'));
     }
 
@@ -53,7 +53,8 @@ class latuasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $datuas = latuas::findorfail($id);
+        return view('edit-latih', compact('datuas'));
     }
 
     /**
@@ -61,7 +62,9 @@ class latuasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $datuas = latuas::findorfail($id);
+        $datuas->update($request->all());
+        return redirect('latuas');
     }
 
     /**
@@ -69,6 +72,8 @@ class latuasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $datuas = latuas::findorfail($id);
+        $datuas->delete();
+        return redirect('latuas');
     }
 }

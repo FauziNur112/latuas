@@ -23,5 +23,8 @@ Route::get('/', function () {
 // });
 
 Route::get('/latuas', [latuasController::class,'show'])->name('latuas');
-Route::get('/createlatuas', [latuasController::class,'create']);
+Route::get('/createlatuas', [latuasController::class,'create'])->name('create');
 Route::post('/simpanlatih', [latuasController::class,'store'])->name('simpanlatih');
+Route::get('/editlatih/{id}', [latuasController::class,'edit'])->name('edit');
+Route::post('/update/{id}', [latuasController::class,'update'])->name('update');
+Route::get('/delete/{id}', [latuasController::class,'destroy'])->name('delete');
